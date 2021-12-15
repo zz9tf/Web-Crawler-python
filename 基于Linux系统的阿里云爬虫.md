@@ -20,12 +20,12 @@
 
 scp是一种用于将文件从自己电脑传输到另一个远端电脑，或将远端电脑文件下载到自己电脑的命令。
 
-'''
+```
 // 上传
 scp [file location] [userName@ip:location you want to put your files]
 // 下载
 scp [userName@ip:location you want to download your files] [file location]
-'''
+```
 
 我遇到的一个问题是，当我将阿里云系统重置之后，scp需要更新自己的信息。而你会遇到诸如如下的问题。
 
@@ -33,8 +33,8 @@ scp [userName@ip:location you want to download your files] [file location]
 
 解决方法：
 
-'''
+```
 ssh-keygen -R [your ip]
-'''
+```
 
 之后scp命令就可以重新使用了。
