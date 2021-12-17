@@ -78,6 +78,38 @@ exit
 ```
 ![image](https://user-images.githubusercontent.com/77183284/146505907-05de8127-f034-47c1-8846-410e3a9b0f0e.png)
 
+## Linux中文显示
+
+我安装的程序是ubuntu_20_04_x64_20G_alibase_20211123.vhd。之前我已经实现了这个系统的图形界面安装，并且python在里面运行良好，但是可能是因为网络或性能等原因，整个系统非常的卡。所以为了解决这个问题，我希望能在没有图形界面的情况下，安装中文字，从而实现python在ssh下的正常运行。
+
+我首先重新刷新了系统（为了删除图形界面，让系统还原为原始系统）。然后执行以下命令来安装中文包
+```
+sudo apt-get update
+sudo apt-get install language-pack-zh-hans
+```
+
+在之后具体参考了下述网站配置环境。
+```
+https://developer.aliyun.com/article/709977
+```
+![image](https://user-images.githubusercontent.com/77183284/146603298-099fdc95-aac4-4f25-8441-4045b08dde10.png)
+
+##### 语言环境查看
+
+通过如下命令查看语言环境
+```
+locale ##这个命令可以看当前安装的语言环境
+locale -a ## 这个命令可以看所有可用的语言环境
+localectl status ## 看一下当前状态
+```
+
+
+```
+sudo locale-gen
+sudo locale-gen en_US
+sudo locale-gen en_US.UTF-8
+```
+
 ## 关于程序
 
 这个程序有多个部分，分别是今日日期的获取，判断今日是否是工作日（排出节假日与周末股票不更新的情况），目标网站的爬取（并下载到CVS表格中），将数据分散在以股票为单位的几千个单个股票的CVS表格，以及休眠11个小时50分钟（节省计算资源）。
