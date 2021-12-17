@@ -94,22 +94,6 @@ https://developer.aliyun.com/article/709977
 ```
 ![image](https://user-images.githubusercontent.com/77183284/146603298-099fdc95-aac4-4f25-8441-4045b08dde10.png)
 
-## 无图形界面下，如何进行多线程Linux
-```
-&             加在正常命令后面，让程序在后台运行
-jobs          查看当前运行的程序（看程序号）
-fg            运行后台唯一一个的程序
-fg %jobNumber 将后台程序放到前台并运行
-ctrl+z        暂停当前程序，并后台挂起
-bg            运行后台暂停的第一个程序
-bg %jobNumber 运行后台暂停的程序
-ps            显示正在运行的程序（显示pid）
-kill          杀死一个程序（kill pid）
-
-```
-
-参考：https://www.cnblogs.com/klobohyz/archive/2011/11/22/2259348.html
-
 ##### 语言环境查看
 
 通过如下命令查看语言环境
@@ -125,6 +109,22 @@ sudo locale-gen
 sudo locale-gen en_US
 sudo locale-gen en_US.UTF-8
 ```
+## 无图形界面下，如何进行多线程Linux
+```
+
+&             加在正常命令后面，让程序在后台运行
+jobs          查看当前运行的程序（看程序号）
+fg            运行后台唯一一个的程序
+fg %jobNumber 将后台程序放到前台并运行
+ctrl+z        暂停当前程序，并后台挂起
+bg            运行后台暂停的第一个程序
+bg %jobNumber 运行后台暂停的程序
+ps            显示正在运行的程序（显示pid）
+kill          杀死一个程序（kill pid）
+
+```
+
+参考：https://www.cnblogs.com/klobohyz/archive/2011/11/22/2259348.html
 
 ## 关于程序【具体可以看代码】
 
