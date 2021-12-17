@@ -38,3 +38,36 @@ ssh-keygen -R [your ip]
 ```
 
 之后scp命令就可以重新使用了。
+
+### screen命令行使用
+
+screen是一个用于维持后台程序运行（保持程序的运行）的终端程序。通过它，我保证了我的python程序可以一直在后台运行。
+
+```
+# 这里创建了一个新screen，name是自己定义的一个新screen的名字
+screen -S name
+```
+
+当我关掉terminal的时候，程序依然会运行。
+![image](https://user-images.githubusercontent.com/77183284/146506360-08093e91-815a-41c2-81fe-3903f6bed582.png)
+
+而为了看我自己的screen都有哪些，可以使用下述命令。
+```
+screen -ls
+```
+![image](https://user-images.githubusercontent.com/77183284/146507389-529ba0f8-9fe5-4fba-a4ad-dc7af77cc368.png)
+
+我可以通过下面的命令来重新连接自己的程序
+```
+screen -r num
+```
+![image](https://user-images.githubusercontent.com/77183284/146507593-a7fdd296-af64-4d01-82d0-dee7a4008d5e.png)
+![image](https://user-images.githubusercontent.com/77183284/146507962-c7ff7dae-ecf9-4395-9e6c-9ab896793cfe.png)
+
+
+在将来我不需要这个screen了之后可以重新连接这个screen，并输入exit来关掉程序。
+```
+screen -r num
+exit
+```
+![image](https://user-images.githubusercontent.com/77183284/146505907-05de8127-f034-47c1-8846-410e3a9b0f0e.png)
