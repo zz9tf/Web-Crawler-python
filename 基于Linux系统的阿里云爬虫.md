@@ -78,7 +78,7 @@ exit
 ```
 ![image](https://user-images.githubusercontent.com/77183284/146505907-05de8127-f034-47c1-8846-410e3a9b0f0e.png)
 
-## Linux中文显示
+## Linux中文显示【未能成功】
 
 我安装的程序是ubuntu_20_04_x64_20G_alibase_20211123.vhd。之前我已经实现了这个系统的图形界面安装，并且python在里面运行良好，但是可能是因为网络或性能等原因，整个系统非常的卡。所以为了解决这个问题，我希望能在没有图形界面的情况下，安装中文字，从而实现python在ssh下的正常运行。
 
