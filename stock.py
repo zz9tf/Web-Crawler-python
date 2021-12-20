@@ -1,7 +1,7 @@
 import requests, re, csv, os.path
 import datetime
 import time
-
+from dateutil.relativedelta import relativedelta
 
 def dateTf(date):
     '''
@@ -178,23 +178,27 @@ def isWorkday(date):
     :return: A boolean represents if today is a workday
     '''
     # 下载数据
+    date = date.split("-")
     url = r"https://sp1.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?tn=wisetpl&format=json&resource_id=39043&query=" \
-          + date[0:4] \
+          + date[0] \
           + r"%E5%B9%B4" \
-          + str(int(date[5:6])) \
+          + date[1] \
           + r"%E6%9C%88&t=1639708282692&cb=op_aladdin_callback1639708282692"
     response = requests.get(url)
     contents = response.text.split('"oDate":')
+    date = "-".join(date)
     date = datetime.datetime.strptime(date[2:], '%y-%m-%d')
-    date = str(date.replace(year=date.year - 1, day=date.day - 1))
+    date = str(date - relativedelta(days=2))
     normalWorkday = ["一", "二", "三", "四", "五"]
+
 
     # 解析数据，确认是周一到周五且不是节假日
     for index in range(len(contents)):
         if date[:10] in contents[index]:
-            if contents[index][203:204] in normalWorkday:
-                if "status" not in contents[index]\
-                        or ("status" not in contents[index] and contents[index][37:38] != '1'):
+            place = contents[index].find("cnDay")
+            if contents[index][place+8] in normalWorkday:
+                place = contents[index+1].find("status")
+                if (place == -1) or (contents[index+1][place+9] != '1'):
                     return True
     return False
 
@@ -218,7 +222,9 @@ def main():
 
         # 确定到达爬取时间
         print("waiting...")
-        while time.strftime("%H:%M:%S", time.localtime()) != "20:00:00":
+        today8pm = datetime.datetime.now()
+        today8pm = today8pm.replace(hour=20, minute=0, second=0, microsecond=0)
+        while datetime.datetime.now() <= today8pm:
             continue
         print("\nNow is " + time.strftime("%H:%M:%S", time.localtime()) + "\nTime to get data:")
 
@@ -233,9 +239,16 @@ def main():
 
     else:
         print("Today is not a workday.")
+
+        # 在固定的时间休息，防止休息错过爬取的时间
+        print("waiting...")
+        while time.strftime("%H:%M:%S", time.localtime()) != "20:00:00":
+            continue
+        print("\nNow is " + time.strftime("%H:%M:%S", time.localtime()) + "\nStart to stop...")
+
     # 程序进入休眠状态
     time.sleep(60 * 60 * 11 + 60 * 50)  # 60sec*60min*11H + 60*50 （11H 50 min)留一些空隙时间防止程序出问题
     print("Ready for the next day!")
 
-
-main()
+while True:
+    main()
