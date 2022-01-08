@@ -182,7 +182,7 @@ def isWorkday(date):
     url = r"https://sp1.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?tn=wisetpl&format=json&resource_id=39043&query=" \
           + date[0] \
           + r"%E5%B9%B4" \
-          + date[1] \
+          + str(int(date[1])) \
           + r"%E6%9C%88&t=1639708282692&cb=op_aladdin_callback1639708282692"
     response = requests.get(url)
     contents = response.text.split('"oDate":')
